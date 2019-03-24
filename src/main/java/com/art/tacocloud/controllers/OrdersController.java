@@ -3,6 +3,7 @@ package com.art.tacocloud.controllers;
 import com.art.tacocloud.data.OrderRepository;
 import com.art.tacocloud.taco.Order;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -20,6 +21,7 @@ import javax.validation.Valid;
 @Controller
 public class OrdersController {
 
+    @Autowired
     private OrderRepository orderRepo;
 
     public OrdersController(OrderRepository orderRepo) {

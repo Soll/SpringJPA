@@ -1,4 +1,4 @@
-package com.art.tacocloud.data;
+package com.art.tacocloud.temp;
 
 import com.art.tacocloud.taco.Ingredient;
 import com.art.tacocloud.taco.Taco;
@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.Map;
 
 @Repository
-public class JdbcTacoRepository implements TacoRepository {
+public class JdbcTacoRepository {
 
     private JdbcTemplate jdbc;
     private ObjectMapper objectMapper;
@@ -23,7 +23,7 @@ public class JdbcTacoRepository implements TacoRepository {
         this.objectMapper = new ObjectMapper();
     }
 
-    @Override
+
     public Taco save(Taco taco) {
 
         long tacoId = saveTacoInfo(taco);
