@@ -22,7 +22,6 @@ public class JdbcOrderRepository implements OrderRepository {
 
     @Autowired
     public JdbcOrderRepository(JdbcTemplate jdbc) {
-
         this.orderInserter = new SimpleJdbcInsert(jdbc).withTableName("Taco_Order").usingGeneratedKeyColumns("id");
         this.orderTacoInserter = new SimpleJdbcInsert(jdbc).withTableName("Taco_Order_Tacos");
         this.objectMapper = new ObjectMapper();
@@ -43,6 +42,8 @@ public class JdbcOrderRepository implements OrderRepository {
     }
 
     private long saveOrderDetails(Order order) {
+
+        order.setPlacedAt(new Date());
         Map<String, Object> values = objectMapper.convertValue(order, Map.class);
         values.put("placedAt", order.getPlacedAt());
         long orderId = orderInserter.executeAndReturnKey(values).longValue();

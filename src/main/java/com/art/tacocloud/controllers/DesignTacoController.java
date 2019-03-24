@@ -71,7 +71,7 @@ public class DesignTacoController {
     }
 
     @PostMapping
-    public String processDesign(@Valid Taco design, Errors errors, @ModelAttribute Order order) {
+    public String processDesign(Order order, @Valid Taco design, Errors errors) {
 
         if (errors.hasErrors())
             return "design";
@@ -89,5 +89,4 @@ public class DesignTacoController {
                 .collect(Collectors.toList());
 
     }
-
 }

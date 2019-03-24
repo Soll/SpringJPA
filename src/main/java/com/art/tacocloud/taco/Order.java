@@ -40,7 +40,7 @@ public class Order {
     private Long id;
     private Date placedAt;
 
-    List<Taco> tacos = new ArrayList<>();
+    private List<Taco> tacos = new ArrayList<>();
 
     public void addDesign(Taco design) {
         this.tacos.add(design);
