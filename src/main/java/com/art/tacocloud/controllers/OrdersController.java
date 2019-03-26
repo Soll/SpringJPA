@@ -1,9 +1,12 @@
 package com.art.tacocloud.controllers;
 
 import com.art.tacocloud.data.OrderRepository;
+import com.art.tacocloud.security.User;
 import com.art.tacocloud.taco.Order;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -35,10 +38,12 @@ public class OrdersController {
     }
 
     @PostMapping
-    public String processOrder(@Valid Order order, Errors errors, SessionStatus sessionStatus) {
+    public String processOrder(@Valid Order order, Errors errors, SessionStatus sessionStatus, @AuthenticationPrincipal User user) {
 
         if (errors.hasErrors())
             return "orderForm";
+
+        order.setUser(user);
 
         orderRepo.save(order);
         sessionStatus.setComplete();

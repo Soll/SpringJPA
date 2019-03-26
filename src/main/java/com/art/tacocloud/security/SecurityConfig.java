@@ -33,21 +33,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
         http
                 .authorizeRequests()
-                .antMatchers("/h2-console/**")
-                .permitAll()
                 .antMatchers("/design", "/orders")
-                .hasRole("USER")
+                .access("hasRole('ROLE_USER')")
                 .antMatchers("/", "/**")
-                .permitAll()
+                .access("permitAll")
+
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/design", true)
+
                 .and()
                 .logout()
                 .logoutSuccessUrl("/");
+
 
     }
 }

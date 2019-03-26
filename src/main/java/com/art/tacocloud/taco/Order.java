@@ -1,5 +1,6 @@
 package com.art.tacocloud.taco;
 
+import com.art.tacocloud.security.User;
 import lombok.Data;
 import org.hibernate.validator.constraints.CreditCardNumber;
 
@@ -18,6 +19,9 @@ import java.util.List;
 public class Order implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    @ManyToOne
+    private User user;
 
     @NotBlank(message = "Name is required")
     private String name;
